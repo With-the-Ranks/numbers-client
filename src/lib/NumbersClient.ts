@@ -4,6 +4,7 @@ import ql from 'superagent-graphql';
 
 import { LookupClient } from './lookup/LookupClient';
 import { SMSClient } from './sms/SMSClient';
+import { RoutingClient } from './routing/RoutingClient';
 import { raiseGqlErrors } from './util';
 
 export const DEFAULT_BASE_URL = 'https://numbers.assemble.live';
@@ -21,6 +22,7 @@ class NumbersClient {
   endpointBaseUrl: string = DEFAULT_BASE_URL;
   lookup: LookupClient = null;
   sms: SMSClient = null;
+  routing: RoutingClient = null;
 
   /**
    * @param options NumbersClient initialization options
@@ -39,6 +41,7 @@ class NumbersClient {
 
     this.lookup = new LookupClient({ requestWrapper: this._requestWrapper });
     this.sms = new SMSClient({ requestWrapper: this._requestWrapper });
+    this.routing = new RoutingClient({ requestWrapper: this._getRequestWrapper });
   }
 
   /**
@@ -48,6 +51,14 @@ class NumbersClient {
     (path = '') =>
     () =>
       request.post(`${this.endpointBaseUrl}${path}`).set('token', this.apiKey);
+
+  /**
+   * @hidden
+   */
+  _getRequestWrapper =
+    (path = '') =>
+    () =>
+      request.get(`${this.endpointBaseUrl}${path}`).set('token', this.apiKey);
 
   /**
    * If you need to make a rawGraphQL request for some access pattern
