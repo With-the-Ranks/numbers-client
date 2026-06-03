@@ -12,7 +12,7 @@ jobs:
       BODY_PATH: release-body.txt
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
       - name: Set output
         id: vars
         run: echo ::set-output name=tag::${GITHUB_REF#refs/tags/} && echo ::set-output name=version::${GITHUB_REF#refs/tags/v}
@@ -31,14 +31,15 @@ jobs:
   deploy-npm-release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: '14'
+          registry-url: "https://registry.npmjs.org"
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
-      - uses: actions/cache@v2
+      - uses: actions/cache@v5
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -47,6 +48,6 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: yarn install
       - run: yarn build
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_AUTOMATION_TOKEN }}
+      - run: yarn publish --non-interactive
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
