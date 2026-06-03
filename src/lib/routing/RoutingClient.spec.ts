@@ -23,9 +23,7 @@ const { TEST_API_KEY, TEST_PROFILE_ID, TEST_DESTINATION_PHONE_NUMBER } =
   process.env;
 
 const REQUEST: RequestFactoryWrapper = (path) => () =>
-  request
-    .get(`${DEFAULT_BASE_URL}${path}`)
-    .set('token', TEST_API_KEY);
+  request.get(`${DEFAULT_BASE_URL}${path}`).set('token', TEST_API_KEY);
 
 test('can get number for contact', async (t) => {
   const client = new RoutingClient({ requestWrapper: REQUEST });
