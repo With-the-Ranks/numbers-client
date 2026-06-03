@@ -7,7 +7,7 @@ import { SMSClient } from './sms/SMSClient';
 import { RoutingClient } from './routing/RoutingClient';
 import { raiseGqlErrors } from './util';
 
-export const DEFAULT_BASE_URL = 'https://numbers.assemble.live';
+export const DEFAULT_BASE_URL = 'https://switchboard.spokewtr.com';
 
 export type RequestFactory = () => request.SuperAgentRequest;
 export type RequestFactoryWrapper = (path?: string) => RequestFactory;
