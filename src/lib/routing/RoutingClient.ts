@@ -1,5 +1,3 @@
-import request from 'superagent';
-
 import { RequestFactoryWrapper, RequestFactory } from '../NumbersClient';
 
 export const ROUTING_PATH = '/routing/get-number-for-contact';
@@ -38,7 +36,7 @@ class RoutingClient {
   }
 
   getNumberForContact = async (
-    args: GetNumberForContactArgs
+    args: GetNumberForContactArgs,
   ): Promise<GetNumberForContactResult> => {
     const { toNumber, profileId, contactZipCode } = args;
     const response = await this._requestFactory().query({

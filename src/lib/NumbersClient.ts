@@ -41,7 +41,9 @@ class NumbersClient {
 
     this.lookup = new LookupClient({ requestWrapper: this._requestWrapper });
     this.sms = new SMSClient({ requestWrapper: this._requestWrapper });
-    this.routing = new RoutingClient({ requestWrapper: this._getRequestWrapper });
+    this.routing = new RoutingClient({
+      requestWrapper: this._getRequestWrapper,
+    });
   }
 
   /**
@@ -85,7 +87,7 @@ class NumbersClient {
   validateDeliveryReportWebhook = (
     messageId: string,
     eventType: string,
-    signature: string
+    signature: string,
   ) => {
     const expectedSignature = crypto
       .createHmac('sha1', this.apiKey)

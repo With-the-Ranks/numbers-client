@@ -111,7 +111,7 @@ class SMSClient {
   request = () => this._requestFactory();
 
   createSendingLocation = async (
-    args: CreateSendingLocationInput
+    args: CreateSendingLocationInput,
   ): Promise<CreateSendingLocationResult> => {
     const response = await this.request()
       .use(ql(CREATE_SENDING_LOCATION, args))
@@ -121,7 +121,7 @@ class SMSClient {
 
   updateSendingLocation = async (
     id: string,
-    patch: UpdateSendingLocationPatch
+    patch: UpdateSendingLocationPatch,
   ): Promise<UpdateSendingLocationResult> => {
     const response = await this.request()
       .use(ql(UPDATE_SENDING_LOCATION, { id, patch }))
@@ -130,7 +130,7 @@ class SMSClient {
   };
 
   deleteSendingLocation = async (
-    id: string
+    id: string,
   ): Promise<DeleteSendingLocationResult> => {
     const response = await this.request()
       .use(ql(DELETE_SENDING_LOCATION, { id }))
@@ -139,7 +139,7 @@ class SMSClient {
   };
 
   getSendingLocations = async (
-    profileId: string
+    profileId: string,
   ): Promise<GetSendingLocationsResult> => {
     const response = await this.request()
       .use(ql(GET_SENDING_LOCATIONS, { profileId }))

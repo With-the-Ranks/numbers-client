@@ -64,7 +64,7 @@ class Request {
    * @param phoneNumbers the phone numbers to add – up to 1000
    */
   async addPhoneNumbers(
-    phoneNumbers: string[]
+    phoneNumbers: string[],
   ): Promise<AddPhoneNumbersResponse> {
     if (this.closed) {
       throw new Error(`You cannot add numbers to a closed request`);
@@ -72,7 +72,7 @@ class Request {
 
     if (phoneNumbers.length > MAX_NUMBERS_PER_REQUEST) {
       throw new Error(
-        `Please only add ${MAX_NUMBERS_PER_REQUEST} numbers at a time`
+        `Please only add ${MAX_NUMBERS_PER_REQUEST} numbers at a time`,
       );
     }
 
@@ -81,7 +81,7 @@ class Request {
         ql(ADD_PHONE_NUMBERS_TO_REQUEST, {
           phoneNumbers,
           requestId: this.requestId,
-        })
+        }),
       )
       .then(raiseGqlErrors);
 
@@ -96,7 +96,7 @@ class Request {
       .use(
         ql(CLOSE_REQUEST, {
           requestId: this.requestId,
-        })
+        }),
       )
       .then(raiseGqlErrors);
 
@@ -111,7 +111,7 @@ class Request {
       .use(
         ql(REQUEST_PROGRESS, {
           requestId: this.requestId,
-        })
+        }),
       )
       .then(raiseGqlErrors);
 
@@ -141,7 +141,7 @@ class Request {
     const { onProgressUpdate, pollInterval = DEFAULT_POLL_INTERVAL } = options;
     if (!this.closed) {
       throw new Error(
-        'You must close a request before awaiting its completion'
+        'You must close a request before awaiting its completion',
       );
     }
 
@@ -183,7 +183,7 @@ class Request {
               pageSize,
               phoneType: phoneType.toUpperCase(),
               requestId: this.requestId,
-            })
+            }),
           )
           .then(raiseGqlErrors);
 
