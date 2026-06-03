@@ -34,3 +34,12 @@ test('can get number for contact', async (t) => {
   });
   t.is(typeof response.fromNumber, 'string');
 });
+
+test('can get number for contact without zip code', async (t) => {
+  const client = new RoutingClient({ requestWrapper: REQUEST });
+  const response = await client.getNumberForContact({
+    toNumber: TEST_DESTINATION_PHONE_NUMBER,
+    profileId: TEST_PROFILE_ID,
+  });
+  t.is(typeof response.fromNumber, 'string');
+});
