@@ -1,5 +1,5 @@
 {
-  "name": "assemble-numbers-client",
+  "name": "switchboard-client",
   "version": "1.4.0",
   "description": "A client for the Assemble Numbers API",
   "main": "build/main/index.js",
