@@ -38,7 +38,7 @@ class RoutingClient {
   }
 
   getNumberForContact = async (
-    args: GetNumberForContactArgs
+    args: GetNumberForContactArgs,
   ): Promise<GetNumberForContactResult> => {
     const { toNumber, profileId, contactZipCode } = args;
     const response = await this._requestFactory().query({

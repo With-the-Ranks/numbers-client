@@ -41,8 +41,8 @@ test('can create sending location', async (t) => {
   t.is(typeof response.data.createSendingLocation.sendingLocation, 'object');
   t.is(
     Array.isArray(
-      response.data.createSendingLocation.sendingLocation.areaCodes
+      response.data.createSendingLocation.sendingLocation.areaCodes,
     ),
-    true
+    true,
   );
 });
