@@ -1,7 +1,7 @@
 import test from 'ava';
 import request from 'superagent';
 
-import { RoutingClient, ROUTING_PATH } from './RoutingClient';
+import { RoutingClient } from './RoutingClient';
 import { RequestFactoryWrapper, DEFAULT_BASE_URL } from '../NumbersClient';
 
 if (!process.env.TEST_API_KEY) {
