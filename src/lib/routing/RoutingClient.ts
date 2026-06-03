@@ -10,7 +10,7 @@ type RoutingClientConstructor = {
 interface GetNumberForContactArgs {
   toNumber: string;
   profileId: string;
-  contactZipCode: string;
+  contactZipCode?: string;
 }
 
 interface GetNumberForContactResult {
@@ -39,11 +39,14 @@ class RoutingClient {
     args: GetNumberForContactArgs,
   ): Promise<GetNumberForContactResult> => {
     const { toNumber, profileId, contactZipCode } = args;
-    const response = await this._requestFactory().query({
+    const query: Record<string, string> = {
       to_number: toNumber,
       profile_id: profileId,
-      contact_zip_code: contactZipCode,
-    });
+    };
+    if (contactZipCode) {
+      query.contact_zip_code = contactZipCode;
+    }
+    const response = await this._requestFactory().query(query);
     return { fromNumber: response.body.from_number };
   };
 }
