@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/With-the-Ranks/numbers-client/compare/v1.4.0...v1.4.1) (2026-06-03)
+
+
+### Bug Fixes
+
+* **package:** rename to switchboard client ([#8](https://github.com/With-the-Ranks/numbers-client/issues/8)) ([8471abb](https://github.com/With-the-Ranks/numbers-client/commit/8471abbf4730d997180f2c621569b11f2815e7e0))
+
 ## 1.4.0 (2026-06-03)
 
 
