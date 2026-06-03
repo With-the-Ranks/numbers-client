@@ -1,5 +1,3 @@
-import request from 'superagent';
-
 import { RequestFactoryWrapper, RequestFactory } from '../NumbersClient';
 
 export const ROUTING_PATH = '/routing/get-number-for-contact';
