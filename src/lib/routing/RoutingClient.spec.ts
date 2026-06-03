@@ -25,21 +25,26 @@ const { TEST_API_KEY, TEST_PROFILE_ID, TEST_DESTINATION_PHONE_NUMBER } =
 const REQUEST: RequestFactoryWrapper = (path) => () =>
   request.get(`${DEFAULT_BASE_URL}${path}`).set('token', TEST_API_KEY);
 
+const TEST_ZIP = '11050';
+const TEST_NUMBER_CA = '+12137363100';
+
 test('can get number for contact', async (t) => {
   const client = new RoutingClient({ requestWrapper: REQUEST });
   const response = await client.getNumberForContact({
     toNumber: TEST_DESTINATION_PHONE_NUMBER,
     profileId: TEST_PROFILE_ID,
-    contactZipCode: '10001',
+    contactZipCode: TEST_ZIP,
   });
-  t.is(typeof response.fromNumber, 'string');
+  t.true(response.fromNumber.startsWith('+1516'));
 });
 
 test('can get number for contact without zip code', async (t) => {
   const client = new RoutingClient({ requestWrapper: REQUEST });
   const response = await client.getNumberForContact({
-    toNumber: TEST_DESTINATION_PHONE_NUMBER,
+    toNumber: TEST_NUMBER_CA,
     profileId: TEST_PROFILE_ID,
   });
+
   t.is(typeof response.fromNumber, 'string');
+  t.true(response.fromNumber.startsWith('+1202'));
 });

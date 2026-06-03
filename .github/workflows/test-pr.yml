@@ -45,5 +45,5 @@ jobs:
         env:
           NODE_ENV: test
           TEST_API_KEY: ${{ secrets.TEST_API_KEY }}
-          TEST_PROFILE_ID: '38803b9a-e46a-11e9-8963-cf859c103d6e'
-          TEST_DESTINATION_PHONE_NUMBER: '+16463893770'
+          TEST_PROFILE_ID: '350155e2-5f67-11f1-a3a8-eb2d5913f5de'
+          TEST_DESTINATION_PHONE_NUMBER: '+121273631000'
